@@ -1,0 +1,295 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+#define PI 3.1415
+
+int main(void)
+{
+double seriesResistance1, seriesResistance2;
+double parallelResistance1, parallelResistance2;
+double seriesCapacitor1, seriesCapacitor2;
+double parallelCapacitor1, parallelCapacitor2;
+float sideA, sideB;
+float diameterCircle;
+int leapYear;
+int factorialNumber;
+float saleAmount, taxAmount;
+double pounds;
+double inches;
+char menuInput;
+
+
+// MENU OPTIONS
+
+int restartProgram;
+
+do {
+    printf("Operation\t\tMenu Option\n");
+    printf("  Series Resistors\t     S\n");
+    printf("  Parallel Resistors\t     P\n");
+    printf("  Series Capacitors\t     C\n");
+    printf("  Parallel Capacitors\t     D\n");
+    printf("  Hypotenuse\t\t     H\n");
+    printf("  Area of Circle\t     A\n");
+    printf("  Leap Year\t\t     L\n");
+    printf("  Factorial\t\t     F\n");
+    printf("  With Tax\t\t     W\n");
+    printf("  Lb to Kg\t\t     K\n");
+    printf("  Inch to Cm\t\t     l\n");
+    printf("  Exit Program\t\t     X\n\n");
+
+    int isNotValid;
+
+// SELECT FROM MENU
+    do {
+        printf("Please enter a menu option from the table above: ");
+        scanf(" %c", &menuInput);
+
+        switch(menuInput){
+
+        //SERIES RESISTORS
+        case 's':
+        case 'S':
+            printf("\nEnter two series resistor values greater than zero.\n");
+            printf("Series Resistor Value 1: ");
+            scanf("%lf", &seriesResistance1);
+                if(seriesResistance1<=0){
+                        printf("Invalid Value\n\n");
+                    isNotValid = 1;
+                    break;
+                }
+
+            printf("Series Resistor Value 2: ");
+            scanf("%lf", &seriesResistance2);
+                if(seriesResistance2<=0){
+                    isNotValid = 1;
+                    break;
+                }
+            double sum = seriesResistance1 + seriesResistance2;
+            printf("Series Resistance: %.2f\n\n", sum);
+            restartProgram = 1;
+            isNotValid = 0;
+            break;
+
+        //PARALLEL RESISTORS
+        case 'p':
+        case 'P':
+            printf("\nEnter two parallel resistor values greater than zero.\n");
+            printf("Parallel Resistor Value 1: ");
+            scanf("%lf", &parallelResistance1);
+                if(parallelResistance1<=0){
+                        printf("Invalid Value\n\n");
+                    isNotValid = 1;
+                    break;
+                }
+
+            printf("Parallel Resistor Value 2: ");
+            scanf("%lf", &parallelResistance2);
+                if(parallelResistance2<=0){
+                    isNotValid = 1;
+                    break;
+                }
+            double pr = (1/parallelResistance1) + (1/parallelResistance2);
+            pr = 1/pr;
+            printf("Parallel Resistance: %.2f\n\n", pr);
+            restartProgram = 1;
+            isNotValid = 0;
+            break;
+
+        //SERIES CAPACITORS
+        case 'c':
+        case 'C':
+            printf("\nEnter two series capacitor values greater than zero.\n");
+            printf("Series Capacitor Value 1: ");
+            scanf("%lf", &seriesCapacitor1);
+                if(seriesCapacitor1<=0){
+                        printf("Invalid Value\n\n");
+                    isNotValid = 1;
+                    break;
+                }
+
+            printf("Series Capacitor Value 2: ");
+            scanf("%lf", &seriesCapacitor2);
+                if(seriesCapacitor2<=0){
+                    isNotValid = 1;
+                    break;
+                }
+            double sc = (1/seriesCapacitor1) + (1/seriesCapacitor2);
+            sc = 1/sc;
+            printf("Series Capacitance: %.2f\n\n", sc);
+            restartProgram = 1;
+            isNotValid = 0;
+            break;
+
+        //PARALLEL CAPACITORS
+        case 'd':
+        case 'D':
+            printf("\nEnter two parallel capacitor values greater than zero.\n");
+            printf("Parallel Capacitor Value 1: ");
+            scanf("%lf", &parallelCapacitor1);
+                if(parallelCapacitor1<=0){
+                        printf("Invalid Value\n\n");
+                    isNotValid = 1;
+                    break;
+                }
+
+            printf("Parallel Capacitor Value 2: ");
+            scanf("%lf", &parallelCapacitor2);
+                if(parallelCapacitor2<=0){
+                    isNotValid = 1;
+                    break;
+                }
+            double pc = parallelCapacitor1 + parallelCapacitor2;
+            printf("Parallel Capacitance: %.2f\n\n", pc);
+            restartProgram = 1;
+            isNotValid = 0;
+            break;
+
+        //HYPOTENUSE
+        case 'h':
+        case 'H':
+            printf("\nEnter two sides of a triangle.\n");
+            printf("Side 1: ");
+            scanf("%f", &sideA);
+                if(sideA<=0){
+                        printf("Invalid Value\n\n");
+                    isNotValid = 1;
+                    break;
+                }
+
+            printf("Side 2: ");
+            scanf("%f", &sideB);
+                if(sideB<=0){
+                    isNotValid = 1;
+                    break;
+                }
+            printf("Hypotenuse: %.2f\n\n", sqrt(pow(sideA,2)+pow(sideB,2)));  //Removed extra squaring.  Basically, it was squaring the output.
+            restartProgram = 1;
+            isNotValid = 0;
+            break;
+
+        //AREA OF CIRCLE
+        case 'a':
+        case 'A':
+            printf("\nEnter a number as the diameter of a circle.\n");
+            printf("Diameter: ");
+            scanf("%f", &diameterCircle);
+                if(diameterCircle<=0){
+                        printf("Invalid Value\n\n");
+                    isNotValid = 1;
+                    break;
+                }
+            printf("Area of Circle: %.2f\n\n", (PI/4) * pow(diameterCircle,2));
+            restartProgram = 1;
+            isNotValid = 0;
+            break;
+
+        //LEAP YEAR
+        case 'l':   //Placed lower 'l' here.  I thought the instructor was being clever and assigned lower 'l' to In_Cm.  Did not know it was a lower 'i'.
+        case 'L':
+            printf("\nEnter a year: ");
+            scanf("%d", &leapYear);
+                if(leapYear<=0){
+                        printf("\nInvalid Value\n\n");
+                    isNotValid = 1;
+                    break;
+                }
+
+            if(leapYear%4 == 0){//Divisible by 4
+                if(leapYear%100 == 0){//Divisible by 100
+                        if(leapYear%400 == 0){//Divisible by 400
+                            printf("%d is a leap year.\n\n", leapYear);
+                        }
+                        else{
+                            printf("%d is not a leap year.\n\n", leapYear);
+                            }
+                }
+                else{
+                    printf("%d is a leap year.\n\n", leapYear);
+                    }
+                }
+            else{
+                printf("%d is not a leap year.\n\n", leapYear);
+                }
+            restartProgram = 1;
+            isNotValid = 0;
+            break;
+
+        //FACTORIAL
+        case 'f':
+        case 'F':
+            printf("\nEnter a number for a factorial output: ");
+            scanf("%d", &factorialNumber);
+
+                //CANNOT BE A NEGATIVE NUMBER
+                if(factorialNumber<0){
+                        printf("Invalid Value\n\n");
+                    isNotValid = 1;
+                    break;
+                }
+
+            int factorialOutput = 1;
+
+            for (int i = 1; i <= factorialNumber; ++i){
+                factorialOutput *= i;
+            }
+
+            printf("%d! = %d\n\n", factorialNumber, factorialOutput);
+            restartProgram = 1;
+            isNotValid = 0;
+            break;
+
+        //WITH TAX
+        case 'w':
+        case 'W':
+            printf("\nEnter the sale amount and the tax rate.\n");
+            printf("Sale Amount: ");
+            scanf("%f", &saleAmount);
+            printf("Tax Rate: ");
+            scanf("%f", &taxAmount);
+
+            printf("Total: %.2f\n\n", (saleAmount*(taxAmount/100)) + saleAmount);
+            restartProgram = 1;
+            isNotValid = 0;
+            break;
+
+        //LB TO KG
+        case 'k':
+        case 'K':
+            printf("\nEnter the weight in pounds: ");
+            scanf("%lf", &pounds);
+
+            printf("%.2lflb = %.2lfkg\n\n", pounds, pounds*0.454 );
+            restartProgram = 1;
+            isNotValid = 0;
+            break;
+
+        //INCH TO CM
+        case 'i':
+        case 'I':
+            printf("\nEnter the length in inches: ");
+            scanf("%lf", &inches);
+
+            printf("%.2lfin = %.2lfcm\n\n", inches, inches*2.54 );
+            restartProgram = 1;
+            isNotValid = 0;
+            break;
+
+        //EXIT PROGRAM
+        case 'x':
+        case 'X':
+            exit(0);
+            break;
+
+        //INVALID OPTION
+        default:
+            printf("Invalid Option\n\n");
+            isNotValid = 1;
+
+		}//SWITCH-CASE
+	} while (isNotValid > 0);//DO WHILE - INVALID MENU INPUTS
+
+} while (restartProgram > 0);//DO WHILE - STARTS PROGRAM OVER
+
+	return 0;
+}//MAIN
